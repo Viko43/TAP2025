@@ -2,6 +2,7 @@ package com.example.demo1;
 
 import com.example.demo1.modelos.Conexion;
 import com.example.demo1.vistas.Calculadora;
+import com.example.demo1.vistas.ListaClientes;
 import com.example.demo1.vistas.VentasRestaurante;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,12 +28,15 @@ public class HelloApplication extends Application {
         mitCalculadora = new MenuItem("Calculadora");
         mitCalculadora.setOnAction(event -> new Calculadora());
         mitRestaurante = new MenuItem("Restaurante");
-        mitRestaurante.setOnAction(event -> new VentasRestaurante());
+        mitRestaurante.setOnAction(event -> new ListaClientes());
         menCompentencia1 = new Menu("Competencia 1");
         menCompentencia1.getItems().addAll(mitCalculadora, mitRestaurante);
+        mnbPrincipal = new MenuBar(menCompentencia1);
         mnbPrincipal = new MenuBar();
         mnbPrincipal.getMenus().addAll(menCompentencia1);
         vBox = new VBox(mnbPrincipal);
+        escena = new Scene(vBox);
+        escena.getStylesheets().add(getClass().getResource("/styles/main.css").toString());
     }
 
     @Override
@@ -40,7 +44,7 @@ public class HelloApplication extends Application {
         Conexion.createConnection();
         CrearUI();
         stage.setTitle("Hola Mundo de Eventos :)");
-        stage.setScene(new Scene(vBox));
+        stage.setScene(escena);
         stage.show();
         stage.setMaximized(true);
     }

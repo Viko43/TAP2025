@@ -2,14 +2,14 @@ package com.example.demo1.vistas;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
-
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 public class VentasRestaurante extends Stage {
 
     private Panel pnlRestaurante;
     private Scene escena;
+
     public VentasRestaurante(){
         CrearUI();
         this.setTitle("Fondita Doña Lupe");
@@ -18,9 +18,10 @@ public class VentasRestaurante extends Stage {
     }
 
     void CrearUI(){
-        pnlRestaurante = new Panel("Tacos el inge");
+        pnlRestaurante = new Panel("Tacos el Inge.");
         pnlRestaurante.getStyleClass().add("panel-primary");
-        escena = new Scene(pnlRestaurante, 300, 200);
+        escena = new Scene(pnlRestaurante,300,200);
         escena.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
     }
+
 }

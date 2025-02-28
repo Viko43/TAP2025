@@ -9,7 +9,7 @@ public class Conexion {
     private static String PWD = "1234";
     private static String Host = "localhost"; //127.0.0.1
     private static String Port = "3306";
-    private static Connection connection;
+    public static Connection connection;
 
     public static void createConnection(){
         try{

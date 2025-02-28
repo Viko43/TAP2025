@@ -9,4 +9,5 @@ module com.example.demo1 {
     exports com.example.demo1;
     requires mysql.connector.j;
     requires java.sql;
+    opens com.example.demo1.modelos;
 }
