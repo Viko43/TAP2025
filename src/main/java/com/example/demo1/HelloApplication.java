@@ -3,6 +3,7 @@ package com.example.demo1;
 import com.example.demo1.modelos.Conexion;
 import com.example.demo1.vistas.Calculadora;
 import com.example.demo1.vistas.ListaClientes;
+import com.example.demo1.vistas.Rompecabezas;
 import com.example.demo1.vistas.VentasRestaurante;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,7 @@ public class HelloApplication extends Application {
     private VBox vBox;
     private MenuBar mnbPrincipal;
     private Menu menCompentencia1, menCompetencia2;
-    private MenuItem mitCalculadora, mitRestaurante;
+    private MenuItem mitCalculadora, mitRestaurante, mitRompecabezas;
     private Scene escena;
 
     void CrearUI(){
@@ -29,8 +30,10 @@ public class HelloApplication extends Application {
         mitCalculadora.setOnAction(event -> new Calculadora());
         mitRestaurante = new MenuItem("Restaurante");
         mitRestaurante.setOnAction(event -> new ListaClientes());
+        mitRompecabezas = new MenuItem("Rompecabezas");
+        mitRompecabezas.setOnAction(event -> Rompecabezas());
         menCompentencia1 = new Menu("Competencia 1");
-        menCompentencia1.getItems().addAll(mitCalculadora, mitRestaurante);
+        menCompentencia1.getItems().addAll(mitCalculadora, mitRestaurante, mitRompecabezas);
         mnbPrincipal = new MenuBar(menCompentencia1);
         mnbPrincipal = new MenuBar();
         mnbPrincipal.getMenus().addAll(menCompentencia1);
@@ -54,5 +57,14 @@ public class HelloApplication extends Application {
     }
     void clickEvent(){
         System.out.println("Evento desde un metodo :)");
+    }
+    private void Rompecabezas() {
+        Stage rompecabezasStage = new Stage();
+        Rompecabezas rompecabezas = new Rompecabezas();
+        try {
+            rompecabezas.start(rompecabezasStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

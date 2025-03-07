@@ -1,15 +1,15 @@
 package com.example.demo1.vistas;
 
+import com.example.demo1.modelos.ButtonCell;
 import com.example.demo1.modelos.ClientesDAO;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToolBar;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 
 public class ListaClientes extends Stage {
 
@@ -26,8 +26,10 @@ public class ListaClientes extends Stage {
     }
 
     private void CrearUI() {
+        tbvClientes = new TableView<>();
         btnAgregar = new Button();
-        ImageView imv = new ImageView(getClass().getResource("/Imagen/person_add_icon.png").toString());
+        btnAgregar.setOnAction(event -> new Cliente(tbvClientes));
+        ImageView imv = new ImageView(getClass().getResource("/image/person_add_icon.png").toString());
         imv.setFitWidth(20);
         imv.setFitHeight(20);
         btnAgregar.setGraphic(imv);
@@ -42,13 +44,30 @@ public class ListaClientes extends Stage {
         ClientesDAO objC = new ClientesDAO();
         TableColumn<ClientesDAO, String> tbcNomCte = new TableColumn<>("Nombre");
         tbcNomCte.setCellValueFactory(new PropertyValueFactory<>("nomCte"));
-        TableColumn<ClientesDAO, String> tbcDireccion = new TableColumn<>("Direccion");
+        TableColumn<ClientesDAO, String> tbcDireccion = new TableColumn<>("Dirección");
         tbcDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         TableColumn<ClientesDAO, String> tbcTel = new TableColumn<>("Telefono");
         tbcTel.setCellValueFactory(new PropertyValueFactory<>("telCte"));
         TableColumn<ClientesDAO, String> tbcEmail = new TableColumn<>("Email");
         tbcEmail.setCellValueFactory(new PropertyValueFactory<>("emailCte"));
-        tbvClientes.getColumns().addAll(tbcNomCte,tbcDireccion,tbcTel,tbcEmail);
+
+        TableColumn<ClientesDAO, String> tbcEditar = new TableColumn<>("Editar");
+        tbcEditar.setCellFactory(new Callback<TableColumn<ClientesDAO, String>, TableCell<ClientesDAO, String>>() {
+            @Override
+            public TableCell<ClientesDAO, String> call(TableColumn<ClientesDAO, String> clientesDAOStringTableColumn) {
+                return new ButtonCell("Editar");
+            }
+        });
+        TableColumn<ClientesDAO, String> tbcEliminar = new TableColumn<>("Eliminar");
+        tbcEliminar.setCellFactory(new Callback<TableColumn<ClientesDAO, String>, TableCell<ClientesDAO, String>>() {
+            @Override
+            public TableCell<ClientesDAO, String> call(TableColumn<ClientesDAO, String> clientesDAOStringTableColumn) {
+                return new ButtonCell("Eliminar");
+            }
+        });
+
+        tbvClientes.getColumns().addAll(tbcNomCte,tbcDireccion,tbcTel,tbcEmail,tbcEditar,tbcEliminar);
         tbvClientes.setItems(objC.SELECT());
+
     }
 }
