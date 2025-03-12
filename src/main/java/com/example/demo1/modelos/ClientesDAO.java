@@ -86,7 +86,7 @@ public class ClientesDAO {
         }
     }
     public ObservableList<ClientesDAO> SELECT(){
-        String query = "SELECT * FROM Clientes";
+        String query = "SELECT * FROM clientes";
         ObservableList<ClientesDAO> listaC = FXCollections.observableArrayList();
         ClientesDAO objC;
         try {

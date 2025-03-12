@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.example.demo1.componentes.Hilo;
 import com.example.demo1.modelos.Conexion;
 import com.example.demo1.vistas.Calculadora;
 import com.example.demo1.vistas.ListaClientes;
@@ -44,6 +45,11 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        new Hilo("Ruta Pinos").start();
+        new Hilo("Ruta Laureles").start();
+        new Hilo("Ruta San Juan de la Vega").start();
+        new Hilo("Ruta Monte Blanco").start();
+        new Hilo("Ruta Teneria").start();
         Conexion.createConnection();
         CrearUI();
         stage.setTitle("Hola Mundo de Eventos :)");
